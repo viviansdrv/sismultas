@@ -1,0 +1,39 @@
+<%- include('partials/header') %>
+        <div class="container">
+            <form class="add-gestor-form" action="" method="post" enctype="multipart/form-data">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome completo" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <input type="text" class="form-control" name="cpf" id="cpf" placeholder="CPF" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <select name="orgao" id="orgao" class="form-control" required>
+                            <option selected disabled>Selecione órgão</option>
+                            <option>Tribunal de Contas do Estado de Pará</option>
+                            <option>Tribunal de Contas do Estado do Rio de Janeiro</option>
+                            <option>Conselho Nacional do Ministério Público</option>
+                            <option>Ministério Público do Pará</option>
+                            <option>Instituto Nacional do Seguro Social</option>
+                            <option>Secretaria Estadual do Meio Ambiente</option>
+                            <option>Secretaria Municipal de Meio Ambiente</option>
+                            <option>Instituto Brasileiro de Geografia e Estatística</option>
+                            <option>Advocacia Geral da União</option>
+                            <option>Agência Brasileira de Inteligência</option>
+                            <option>Fundação de Desenvolvimento da UNICAMP</option>
+                            <option>Secretaria da Fazenda do Estado do Pará</option>
+                            <option>Procuradoria Geral do Estado do Pará</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success float-left">Adicionar Gestor</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

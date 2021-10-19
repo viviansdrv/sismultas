@@ -1,24 +1,20 @@
-<%- include('./partials/header') %>        
+<%- include('./partials/header') %>
         <div class="table-wrapper">
-            <% if (multas.length > 0) { %>
+            <% if (gestores.length > 0) { %>
                 <table class="table table-hover">
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">nome</th>
-                            <th scope="col">causa</th>
-                            <th scope="col">valor</th>
-                            <th scope="col">parcelas</th>
-                            <th scope="col">pago</th>
+                            <th scope="col">cpf</th>
+                            <th scope="col">orgao</th>
                         </tr>
                     </thead>
                     <tbody>
-                    <% multas.forEach((registro, indice) => { %>
+                    <% gestores.forEach((registro, indice) => { %>
                         <tr>
                             <td><%= registro.nome %></td>
-                            <td><%= registro.causa %></td>
-                            <td><%= registro.valor %></td>
-                            <td><%= registro.parcelas %></td>
-                            <td><%= registro.pago %></td>
+                            <td><%= registro.cpf %></td>
+                            <td><%= registro.orgao %></td>
                         </tr>
                     <% }) %>
                     </tbody>
@@ -27,6 +23,9 @@
                 <p class="text-center">Nenhum registro encontrado.</p>
             <% } %>
         </div>
+    </div>
+    <div class="container">
+        <a href="/add-gestor"><p class="container">Adicionar um novo gestor</p></a>
     </div>
 </body>
 </html>

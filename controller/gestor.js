@@ -38,11 +38,14 @@ exports.editarGestorPage = (req,res) => {
         if (err) {
             res.redirect('/');
         }
+        orgaoResult.forEach( orgao => {
+            orgao.selected = '';
+        });
         db.query(gestorQuery, (err,gestorResult) => {
             if (err) {
                 res.redirect('/');
             }
-            console.log(gestorResult);
+            orgaoResult[gestorResult[0].cod_orgao - 1].selected = 'selected';
             res.render('edit-gestor.ejs',{
                 title: 'Adicionar um novo gestor',
                 gestor: gestorResult[0],

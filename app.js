@@ -1,8 +1,8 @@
 'use strict';
 
 const mysql = require('mysql');
-const path = require('path');
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 const {getHomePage} = require('./controller/inicio');
 const {getGestorPage, adicionarGestorPage, adicionarGestor} = require('./controller/gestor');
@@ -28,8 +28,8 @@ app.set('port', process.env.port || PORT);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-app.use(express.urlencoded({extended: false}));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/', getHomePage);
 app.get('/gestor', getGestorPage);

@@ -1,6 +1,6 @@
 'use strict';
 
-function getGestorPage(req,res) {
+exports.getGestorPage = (req,res) => {
     let query = 'SELECT gestor.nome nome, gestor.cpf cpf, orgao.nome orgao ' +
         'FROM gestor INNER JOIN orgao ON gestor.cod_orgao = orgao.cod;'
     
@@ -15,13 +15,13 @@ function getGestorPage(req,res) {
     });
 }
 
-function adicionarGestorPage(req,res) {
+exports.adicionarGestorPage = (req,res) => {
     res.render('add-gestor.ejs',{
         title: 'Adicionar um novo gestor'
     });
 }
 
-function adicionarGestor(req,res) {
+exports.adicionarGestor = (req,res) => {
     let nome = req.body.nome;
     let cpf = req.body.cpf;
     let orgao = req.body.orgao;
@@ -63,5 +63,3 @@ function adicionarGestor(req,res) {
         }
     });
 }
-
-module.exports = { getGestorPage, adicionarGestorPage, adicionarGestor };

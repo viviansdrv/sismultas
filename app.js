@@ -35,9 +35,11 @@ app.get('/', getHomePage);
 app.get('/gestor', gestor.getGestorPage);
 app.get('/add-gestor', gestor.adicionarGestorPage);
 app.get('/edit-gestor/:id', gestor.editarGestorPage);
+app.get('/delete-gestor/:id', gestor.deletarGestor);
 
 app.post('/add-gestor', gestor.adicionarGestor);
-// app.post('/edit-gestor/:id', gestor.editarGestor);
+app.post('/edit-gestor/:id', gestor.editarGestor);
+
 
 app.listen(PORT, () => {
     console.log(`Servidor em execução na porta ${PORT}.`);

@@ -1,7 +1,7 @@
 'use strict';
 
 exports.getGestorPage = (req,res) => {
-    let query = 'SELECT gestor.nome nome, gestor.cpf cpf, orgao.nome orgao ' +
+    let query = 'SELECT gestor.cod cod, gestor.nome nome, gestor.cpf cpf, orgao.nome orgao ' +
         'FROM gestor INNER JOIN orgao ON gestor.cod_orgao = orgao.cod;'
     
     db.query(query, (err,result) => {
@@ -16,8 +16,39 @@ exports.getGestorPage = (req,res) => {
 }
 
 exports.adicionarGestorPage = (req,res) => {
-    res.render('add-gestor.ejs',{
-        title: 'Adicionar um novo gestor'
+    let query = 'SELECT nome FROM orgao ORDER BY cod ASC;';
+
+    db.query(query, (err,result) => {
+        if (err) {
+            res.redirect('/');
+        }
+        res.render('add-gestor.ejs',{
+            title: 'Adicionar um novo gestor',
+            orgaos: result
+        });
+    });
+}
+
+exports.editarGestorPage = (req,res) => {
+    let gestorId = req.params.id;
+    let orgaoQuery = 'SELECT nome FROM orgao ORDER BY cod ASC;';
+    let gestorQuery = 'SELECT * FROM gestor WHERE cod=' + gestorId + ';';
+
+    db.query(orgaoQuery, (err,orgaoResult) => {
+        if (err) {
+            res.redirect('/');
+        }
+        db.query(gestorQuery, (err,gestorResult) => {
+            if (err) {
+                res.redirect('/');
+            }
+            console.log(gestorResult);
+            res.render('edit-gestor.ejs',{
+                title: 'Adicionar um novo gestor',
+                gestor: gestorResult[0],
+                orgaos: orgaoResult
+            });
+        });
     });
 }
 
@@ -27,10 +58,6 @@ exports.adicionarGestor = (req,res) => {
     let orgao = req.body.orgao;
     let codigo = -1;
 
-    console.log(`req.body.nome = ${nome}`);
-    console.log(`req.body.cpf = ${cpf}`);
-    console.log(`req.body.orgao = ${orgao}`);
-
     let codOrgaoQuery = "SELECT cod FROM orgao WHERE nome LIKE '%" + orgao + "%';";
     db.query(codOrgaoQuery, (err, result) => {
         if (err) {
@@ -38,7 +65,6 @@ exports.adicionarGestor = (req,res) => {
         }
         if (result.length === 1) {
             codigo = Number(result[0].cod);
-            console.log(`codigo = ${codigo}`);
         }
     });
 

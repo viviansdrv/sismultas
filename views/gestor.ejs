@@ -15,6 +15,9 @@
                             <td><%= registro.nome %></td>
                             <td><%= registro.cpf %></td>
                             <td><%= registro.orgao %></td>
+                            <td>
+                                <a href="/edit-gestor/<%= registro.cod %>" rel="noopener" class="btn btn-sm btn-success">Editar</a>
+                            </td>
                         </tr>
                     <% }) %>
                     </tbody>

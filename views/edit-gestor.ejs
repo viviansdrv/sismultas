@@ -1,14 +1,15 @@
 <%- include('partials/header') %>
         <div class="container">
+            <% if (gestor) { %>
             <form class="add-gestor-form" action="" method="post" enctype="application/x-www-form-urlencoded">
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome completo" required>
+                        <input type="text" class="form-control" name="nome" id="nome" value="<%= gestor.nome %>" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                        <input type="text" class="form-control" name="cpf" id="cpf" placeholder="CPF" required>
+                        <input type="text" class="form-control" name="cpf" id="cpf" value="<%= gestor.cpf %>" required>
                     </div>
                 </div>
                 <% if (orgaos.length > 0) { %>
@@ -25,6 +26,9 @@
                 <% } %>
                 <button type="submit" class="btn btn-success float-left">Adicionar Gestor</button>
             </form>
+            <% } else { %>
+                <p class="text-center">Gestor não encontrado</p>
+            <% } %>
         </div>
     </div>
 </body>

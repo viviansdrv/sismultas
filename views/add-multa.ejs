@@ -13,33 +13,29 @@
                         </div>
                     </div>
                 <% } %>
-
                 <% if (motivos.length > 0) { %>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <select name="motivo" id="motivo" class="form-control" required>
                                 <option selected disabled>Selecione o motivo</option>
-                                <% motivo.forEach(registro => { %>
+                                <% motivos.forEach(registro => { %>
                                     <option><%= registro.causa %></option>
                                 <% }) %>
                             </select>
                         </div>
                     </div>
                 <% } %>
-
-                <!-- <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <input type="text" class="form-control" name="valor" id="valor" placeholder="Digite o valor" required>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <input type="text" class="form-control" name="valor" id="valor" placeholder="Valor da multa" required>
                     </div>
                 </div>
-
                 <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <input type="text" class="form-control" name="parcelas" id="parcelas" placeholder="Nº de Parc" required>
+                    <div class="form-group col-md-3">
+                        <input type="text" class="form-control" name="parcelas" id="parcelas" placeholder="Quantidade de parcelas" required>
                     </div>
-                </div>     -->
-
-                <button type="submit" class="btn btn-success float-left">Adicionar Multa</button>
+                </div>
+                <button type="submit" class="btn btn-success float-left">Adicionar multa</button>
             </form>
         </div>
     </div>

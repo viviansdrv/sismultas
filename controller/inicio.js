@@ -65,9 +65,38 @@ exports.adicionarMultaPage = (req,res) => {
 }
 
 exports.adicionarMulta = (req,res) => {
-    let nome = req.body.nome;
-    let causa = req.body.causa;
-    //let valor = req.body.valor_total;
-    //let parcela = req.body.qtd_parcelas;
+    let gestor = req.body.gestor;
+    let motivo = req.body.motivo;
+    let valor = req.body.valor;
+    let parcelas = req.body.parcelas;
+    let codigoGestor = -1;
+    let codigoMotivo = -1;
 
+    let codOrgaoQuery = "SELECT cod FROM gestor WHERE nome LIKE '%" + gestor + "%';";
+    db.query(codOrgaoQuery, (err, codOrgaoResult) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+        if (codOrgaoResult.length === 1) {
+            codigoGestor = Number(codOrgaoResult[0].cod);
+        }
+        let codMotivoQuery = "SELECT cod FROM motivo WHERE causa LIKE '%" + motivo + "%';";
+        db.query(codMotivoQuery, (err, codMotivoResult) => {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            if (codMotivoResult.length === 1) {
+                codigoMotivo = Number(codMotivoResult[0].cod);
+            }
+            let insertQuery = 'INSERT INTO multa(cod_gestor,cod_motivo,valor_total,qtd_parcelas) VALUES (' +
+                codigoGestor + ',' + codigoMotivo + ',' + valor + ',' + parcelas + ');';
+            db.query(insertQuery, (err, result) => {
+                if (err) {
+                    res.status(500).send(err);
+                }
+                console.log('Multa inserida com sucesso.');
+                res.redirect('/');
+            });
+        });
+    });
 }

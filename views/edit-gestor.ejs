@@ -17,7 +17,7 @@
                     <div class="form-group col-md-6">
                         <select name="orgao" id="orgao" class="form-control" required>
                             <option disabled>Selecione órgão</option>
-                            <% orgaos.forEach((registro, indice) => { %>
+                            <% orgaos.forEach( registro => { %>
                                 <option<%= registro.selected %>><%= registro.nome %></option>
                             <% }) %>
                         </select>

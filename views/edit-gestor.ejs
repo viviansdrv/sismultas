@@ -18,7 +18,7 @@
                         <select name="orgao" id="orgao" class="form-control" required>
                             <option disabled>Selecione órgão</option>
                             <% orgaos.forEach((registro, indice) => { %>
-                                <option <%= registro.selected %>><%= registro.nome %></option>
+                                <option<%= registro.selected %>><%= registro.nome %></option>
                             <% }) %>
                         </select>
                     </div>

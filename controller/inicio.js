@@ -69,5 +69,7 @@ exports.adicionarMulta = (req,res) => {
     let causa = req.body.causa;
     let valor = req.body.valor_total;
     let parcela = req.body.qtd_parcelas;
+    //let valor = req.body.valor_total;
+    //let parcela = req.body.qtd_parcelas;
 
 }

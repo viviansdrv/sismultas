@@ -19,7 +19,11 @@ exports.getHomePage = (req,res) => {
                 console.log(`cod = ${row.cod} ; cod_multa = ${row.cod_multa} ; parc_restantes = ${row.parc_restantes}`);
             })
             for ( let i = 0; i < result.length; i++) {
-                result[ i ].restantes = parcResult[ i ].parc_restantes;
+              for ( let j = 0; j < parcResult.length; j++ ) {
+                if ( result[ i ].cod === parcResult[ j ].cod_multa ) {
+                  result[ i ].restantes = parcResult[ j ].parc_restantes;
+                }
+              }
             }
             res.render('index.ejs', {
                 title: 'Sistema de multas',
